@@ -37,6 +37,9 @@ class PersonListFragment : Fragment() {
         viewModel.getPersonList()
         adapter = PersonAdapter()
         binding.rvPersonList.adapter = adapter
+        binding.root.setOnClickListener {
+            viewModel.getPersonList()
+        }
     }
 
     private val uiStateObserver = Observer<PersonUIState> { uiState ->
