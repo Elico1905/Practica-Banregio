@@ -12,7 +12,7 @@ object PersonRepositoryImp : PersonRepository {
         try {
             apiService.getPersonalListV2(0)
         }catch (e:Exception){
-            Log.d("Documento",e.message.toString())
+            Log.d("Documento",e.message.toString())//esto es un commit
         }
 
         val list = listOf(
