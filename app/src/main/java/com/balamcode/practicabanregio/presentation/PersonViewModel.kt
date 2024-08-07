@@ -16,17 +16,23 @@ class PersonViewModel(
     val uiState: LiveData<PersonUIState>
         get() = mutableUiState
 
+    private var pageNumber: Int = 0
+    private var isLastPage: Boolean = false
 
     fun getPersonList() {
-        mutableUiState.postValue(PersonUIState.Loading)
-        viewModelScope.launch {
-            when (val result = providesGetPersonList.execute()) {
-                is GetPersonPersonListResult.Success -> {
-                    mutableUiState.postValue(PersonUIState.ShowPersonList(result.personList))
-                }
+        if (!isLastPage) {
+            mutableUiState.postValue(PersonUIState.Loading)
+            viewModelScope.launch {
+                when (val result = providesGetPersonList.execute(pageNumber)) {
+                    is GetPersonPersonListResult.Success -> {
+                        pageNumber = result.information.pageable.pageNumber + 1
+                        isLastPage = result.information.last
+                        mutableUiState.postValue(PersonUIState.ShowPersonList(result.information.content))
+                    }
 
-                is GetPersonPersonListResult.Fail -> {
-                    mutableUiState.postValue(PersonUIState.Loading)
+                    is GetPersonPersonListResult.Fail -> {
+                        mutableUiState.postValue(PersonUIState.Fail(result.message))
+                    }
                 }
             }
         }

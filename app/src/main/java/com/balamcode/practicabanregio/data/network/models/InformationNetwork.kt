@@ -1,22 +1,24 @@
 package com.balamcode.practicabanregio.data.network.models
 
-data class PersonalInformation(
-    val content: List<ContentInformation>? = null,
-    val pageable: PageableInformation? = null,
+import com.google.gson.annotations.SerializedName
+
+data class InformationNetwork(
+    val content: List<ClientInformationNetwork>? = null,
+    val pageable: PageableNetwork? = null,
     val last: Boolean? = null,
     val totalElements: Int? = null,
     val totalPages: Int? = null,
     val number: Int? = null,
-    val sort: SortInformation? = null,
+    val sort: SortNetwork? = null,
     val size: Int? = null,
     val numberOfElements: Int? = null,
     val first: Boolean? = null,
     val empty: Boolean? = null
 )
 
-data class ContentInformation(
+data class ClientInformationNetwork(
     val id: Int? = null,
-    val primerNombre: String? = null,
+    @SerializedName("primerNombre") val firstName: String? = null,
     val segundoNombre: String? = null,
     val apellidoPaterno: String? = null,
     val apellidoMaterno: String? = null,
@@ -28,15 +30,15 @@ data class ContentInformation(
     val activo: Boolean? = null,
 )
 
-data class PageableInformation(
-    val sort: SortInformation? = null,
+data class PageableNetwork(
+    val sort: SortNetwork? = null,
     val offset: Int? = null,
     val pageNumber: Int? = null,
     val pageSize: Int? = null,
     val paged: Boolean? = null,
 )
 
-data class SortInformation(
+data class SortNetwork(
     val sorted: Boolean? = null,
     val unsorted: Boolean? = null,
     val empty: Boolean? = null

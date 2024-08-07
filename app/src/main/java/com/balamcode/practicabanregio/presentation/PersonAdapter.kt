@@ -4,16 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.balamcode.practicabanregio.databinding.ItemPersonBinding
-import com.balamcode.practicabanregio.domain.models.PersonModel
+import com.balamcode.practicabanregio.domain.models.ClientInformationModel
 
 class PersonAdapter : RecyclerView.Adapter<PersonViewHolder>() {
 
-    private var itemList = mutableListOf<PersonModel>()
+    private var itemList = mutableListOf<ClientInformationModel>()
 
-    fun addItem(list: List<PersonModel>) {
-        itemList.clear()
+    fun addItem(list: List<ClientInformationModel>) {
+        val startPosition = itemList.size
         itemList.addAll(list)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(startPosition, list.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
@@ -38,7 +38,7 @@ class PersonViewHolder(
     private val binding: ItemPersonBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(person: PersonModel) {
+    fun bind(person:  ClientInformationModel) {
         binding.tvName.text = person.firstName
     }
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.balamcode.practicabanregio.databinding.FragmentListBinding
@@ -37,7 +38,7 @@ class PersonListFragment : Fragment() {
         viewModel.getPersonList()
         adapter = PersonAdapter()
         binding.rvPersonList.adapter = adapter
-        binding.root.setOnClickListener {
+        binding.button.setOnClickListener {
             viewModel.getPersonList()
         }
     }
@@ -49,6 +50,7 @@ class PersonListFragment : Fragment() {
             }
 
             is PersonUIState.Fail -> {
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
                 Log.d("Documento", uiState.message.toString())
             }
 
