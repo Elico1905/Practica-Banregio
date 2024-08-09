@@ -25,7 +25,7 @@ class PersonViewModel(
             viewModelScope.launch {
                 when (val result = providesGetPersonList.execute(pageNumber)) {
                     is GetPersonPersonListResult.Success -> {
-                        pageNumber = result.information.pageable.pageNumber + 1
+                        pageNumber += 1
                         isLastPage = result.information.last
                         mutableUiState.postValue(
                             PersonUIState.ShowPersonList(
