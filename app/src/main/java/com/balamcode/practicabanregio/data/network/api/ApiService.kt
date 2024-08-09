@@ -10,6 +10,6 @@ interface ApiService {
     @GET("{page}/API.json")
     suspend fun getInformation(@Path("page") page: Int): InformationNetwork
 
-    @GET("API.json")
-    suspend fun getInformationV2(): InformationNetwork
+    @GET("{page}/CustomAPI.json")
+    suspend fun getInformationV2(@Path("page") page: Int): InformationNetwork
 }
