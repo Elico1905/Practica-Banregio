@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.balamcode.practicabanregio.domain.useCase.GetPersonPersonListUseCase
 
+@Suppress("UNCHECKED_CAST")
 class PersonViewModelFactory(
     private val getPersonList: GetPersonPersonListUseCase,
 ) : ViewModelProvider.Factory {

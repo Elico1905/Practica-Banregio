@@ -8,16 +8,6 @@ import com.balamcode.practicabanregio.domain.models.ClientInformationModel
 import com.balamcode.practicabanregio.domain.models.InformationModel
 import com.balamcode.practicabanregio.domain.models.PageableModel
 import com.balamcode.practicabanregio.domain.models.SortModel
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-//val s = entityToModel<InformationModel>(result)
-inline fun <reified T> entityToModel(entity: Any?): T {
-    requireNotNull(entity) { "Entity cannot be null" }
-    val gson = Gson()
-    val json = gson.toJson(entity)
-    return gson.fromJson(json, object : TypeToken<T>() {}.type)
-}
-
 
 fun InformationNetwork.toDomain(): InformationModel {
     return InformationModel(

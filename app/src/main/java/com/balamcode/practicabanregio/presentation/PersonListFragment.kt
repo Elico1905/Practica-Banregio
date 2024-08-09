@@ -1,12 +1,11 @@
 package com.balamcode.practicabanregio.presentation
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.balamcode.practicabanregio.databinding.FragmentListBinding
@@ -48,8 +47,11 @@ class PersonListFragment : Fragment(), ClickInterface {
             }
 
             is PersonUIState.Fail -> {
-                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
-                Log.d("Documento", uiState.message.toString())
+                Toast.makeText(
+                    requireContext(),
+                    uiState.message.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             is PersonUIState.ShowPersonList -> {
