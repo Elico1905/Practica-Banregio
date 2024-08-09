@@ -27,7 +27,12 @@ class PersonViewModel(
                     is GetPersonPersonListResult.Success -> {
                         pageNumber = result.information.pageable.pageNumber + 1
                         isLastPage = result.information.last
-                        mutableUiState.postValue(PersonUIState.ShowPersonList(result.information.content))
+                        mutableUiState.postValue(
+                            PersonUIState.ShowPersonList(
+                                result.information.content,
+                                !isLastPage
+                            )
+                        )
                     }
 
                     is GetPersonPersonListResult.Fail -> {

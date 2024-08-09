@@ -11,8 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.balamcode.practicabanregio.databinding.FragmentListBinding
 import com.balamcode.practicabanregio.di.PersonModule
+import com.balamcode.practicabanregio.domain.models.ClickInterface
 
-class PersonListFragment : Fragment() {
+class PersonListFragment : Fragment(), ClickInterface {
 
     private lateinit var binding: FragmentListBinding
     private lateinit var adapter: PersonAdapter
@@ -36,11 +37,8 @@ class PersonListFragment : Fragment() {
     private fun initSettings() {
         viewModel.uiState.observe(viewLifecycleOwner, uiStateObserver)
         viewModel.getPersonList()
-        adapter = PersonAdapter()
+        adapter = PersonAdapter(this)
         binding.rvPersonList.adapter = adapter
-        binding.button.setOnClickListener {
-            viewModel.getPersonList()
-        }
     }
 
     private val uiStateObserver = Observer<PersonUIState> { uiState ->
@@ -55,9 +53,13 @@ class PersonListFragment : Fragment() {
             }
 
             is PersonUIState.ShowPersonList -> {
-                adapter.addItem(uiState.list)
+                adapter.addItem(uiState.list, uiState.showButton)
             }
         }
+    }
+
+    override fun loadMoreItems() {
+        viewModel.getPersonList()
     }
 
 }
