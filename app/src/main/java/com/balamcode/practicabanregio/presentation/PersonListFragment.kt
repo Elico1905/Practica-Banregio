@@ -1,6 +1,7 @@
 package com.balamcode.practicabanregio.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,7 @@ class PersonListFragment : Fragment(), ClickInterface {
             }
 
             is PersonUIState.Fail -> {
+                Log.d("Documento", uiState.message.toString())
                 Toast.makeText(
                     requireContext(),
                     uiState.message.toString(),
