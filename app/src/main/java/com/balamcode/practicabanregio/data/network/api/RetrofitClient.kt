@@ -9,10 +9,14 @@ object RetrofitClient {
 
     val apiService: ApiService by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL_BAN)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
     }
-
+    /**
+     * naegacion al detalle
+     * ver los atributos
+     * agregar los string,tamaños y referencias
+     */
 }

@@ -10,7 +10,7 @@ object PersonRepositoryImp : PersonRepository {
 
     override suspend fun getInformation(page: Int): ResultRepository<InformationModel> {
         return try {
-            val service = apiService.getInformation(page)
+            val service = apiService.getInformationV2(page)
             val result = service.toDomain()
             ResultRepository.Success(result)
         } catch (e: Exception) {

@@ -8,7 +8,6 @@
         android:id="@+id/personListFragment"
         android:name="com.balamcode.practicabanregio.presentation.PersonListFragment"
         android:label="List"
-        tools:layout="@layout/item_person"/>
-
+        tools:layout="@layout/item_person" />
 
 </navigation>
