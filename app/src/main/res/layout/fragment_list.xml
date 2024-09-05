@@ -8,15 +8,95 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_person_list"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ll_menu_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="5"
         tools:listitem="@layout/item_person" />
+
+    <LinearLayout
+        android:id="@+id/ll_menu_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_person_list">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:text="Anterior" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:text="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:text="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:text="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:text="4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:text="Siguiente" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
