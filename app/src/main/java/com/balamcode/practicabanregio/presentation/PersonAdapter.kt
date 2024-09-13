@@ -13,17 +13,19 @@ class PersonAdapter(private val listener: ClickInterface) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList = ArrayList<Any>()
-    private var lastItem: String = "Button"
-    fun addItem(list: List<Any>, showButton: Boolean) {
-        if (itemList.isNotEmpty()) {
+
+    fun addItem(list: List<Any>) {
+        /*if (itemList.isNotEmpty()) {
             itemList.removeLast()
         }
         itemList.addAll(list)
         if (showButton) {
             itemList.add(lastItem)
         }
-        notifyItemRangeInserted(itemList.size, list.size)
-
+        notifyItemRangeInserted(itemList.size, list.size)*/
+        itemList.clear()
+        itemList.addAll(list)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -34,7 +36,8 @@ class PersonAdapter(private val listener: ClickInterface) :
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    listener
                 )
             }
 
@@ -80,11 +83,15 @@ class PersonAdapter(private val listener: ClickInterface) :
     }
 
     inner class PersonViewHolder(
-        private val binding: ItemPersonBinding
+        private val binding: ItemPersonBinding,
+        private val listener: ClickInterface
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(person: ClientInformationModel) {
-            binding.tvName.text = person.firstName
+            binding.tvItemName.text = person.firstName
+            binding.root.setOnClickListener {
+                listener.showDetails(person)
+            }
         }
     }
 
@@ -94,7 +101,7 @@ class PersonAdapter(private val listener: ClickInterface) :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             binding.btnLoadMoreItems.setOnClickListener {
-                listener.loadMoreItems()
+                //listener.loadMoreItems()
             }
         }
     }

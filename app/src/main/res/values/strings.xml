@@ -2,5 +2,10 @@
     <string name="app_name">Practica Banregio</string>
 
     <string name="item_button_title">Cargar más</string>
+    <string name="image_description">Imagen</string>
+
+    <string name="option_1">1</string>
+    <string name="option_2">2</string>
+    <string name="option_3">3</string>
 
 </resources>

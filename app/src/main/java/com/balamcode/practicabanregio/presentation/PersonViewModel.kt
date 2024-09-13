@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.balamcode.practicabanregio.domain.models.ClientInformationModel
 import com.balamcode.practicabanregio.domain.useCase.GetPersonPersonListResult
 import com.balamcode.practicabanregio.domain.useCase.GetPersonPersonListUseCase
 import kotlinx.coroutines.launch
@@ -15,29 +16,20 @@ class PersonViewModel(
     private val mutableUiState: MutableLiveData<PersonUIState> = MutableLiveData()
     val uiState: LiveData<PersonUIState>
         get() = mutableUiState
+    var client: ClientInformationModel? = null
 
-    private var pageNumber: Int = 0
-    private var isLastPage: Boolean = false
-
-    fun getPersonList() {
-        if (!isLastPage) {
+    fun getPersonList(pageNumber: Int) {
+        viewModelScope.launch {
             mutableUiState.postValue(PersonUIState.Loading)
-            viewModelScope.launch {
-                when (val result = providesGetPersonList.execute(pageNumber)) {
-                    is GetPersonPersonListResult.Success -> {
-                        pageNumber += 1
-                        isLastPage = result.information.last
-                        mutableUiState.postValue(
-                            PersonUIState.ShowPersonList(
-                                result.information.content,
-                                !isLastPage
-                            )
-                        )
-                    }
+            when (val result = providesGetPersonList.execute(pageNumber)) {
+                is GetPersonPersonListResult.Success -> {
+                    mutableUiState.postValue(
+                        PersonUIState.ShowPersonList(result.information.content)
+                    )
+                }
 
-                    is GetPersonPersonListResult.Fail -> {
-                        mutableUiState.postValue(PersonUIState.Fail(result.message))
-                    }
+                is GetPersonPersonListResult.Fail -> {
+                    mutableUiState.postValue(PersonUIState.Fail(result.message))
                 }
             }
         }

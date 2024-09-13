@@ -8,6 +8,18 @@
         android:id="@+id/personListFragment"
         android:name="com.balamcode.practicabanregio.presentation.PersonListFragment"
         android:label="List"
-        tools:layout="@layout/item_person" />
+        tools:layout="@layout/fragment_list">
+
+        <action
+            android:id="@+id/list_fragment_to_detail_fragment"
+            app:destination="@id/detailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.balamcode.practicabanregio.presentation.DetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail" />
 
 </navigation>

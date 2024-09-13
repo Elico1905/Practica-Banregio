@@ -2,6 +2,6 @@ package com.balamcode.practicabanregio.domain.models
 
 interface ClickInterface {
 
-    fun loadMoreItems()
+    fun showDetails(item: ClientInformationModel)
 
 }
